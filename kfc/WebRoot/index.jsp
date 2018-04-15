@@ -49,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <head>
 <title>Home</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
+<!-- <script src="js/bootstrap.min.js"></script> -->
 <script src="js/jquery.min.js"></script>
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">

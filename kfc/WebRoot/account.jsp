@@ -315,7 +315,7 @@ display:inline-block;
 			   <div class="col-md-6 login-left">
 			  	 <h3>新用户</h3>
 				 <p>通过创建一个帐户与我们的商店，你将能够更快地通过结帐过程，存储多个送货地址，查看和跟踪您的订单在您的帐户和更多。</p><p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-				 <a class="acount-btn" href="register.html">创建一个账户</a>
+				 <a class="acount-btn" href="register.jsp">创建一个账户</a>
 			   </div>
 			   <div class="col-md-6 login-right">
 			  	<h3>用户登录</h3>
