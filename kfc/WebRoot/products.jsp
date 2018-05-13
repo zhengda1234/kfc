@@ -263,21 +263,21 @@ display:inline-block;
 		   	   	<li>
 		   	   		<ul class="review1">
 		   	   			<li class="review1_img"><img src="images/pic1.jpg" class="img-responsive" alt=""/></li>
-		   	   			<li class="review1_desc"><h3><a href="#">这件商品我强烈推荐，非常值得购买！</a></h3><p>2016年12月10日</p></li>
+		   	   			<li class="review1_desc"><h3><a href="#">这件商品我强烈推荐，非常值得购买！</a></h3><p>2018年04月15日</p></li>
 		   	   			<div class="clearfix"> </div>
 		   	   		</ul>
 		   	   	</li>
 		   	   	<li>
 		   	   		<ul class="review1">
 		   	   			<li class="review1_img"><img src="images/pic2.jpg" class="img-responsive" alt=""/></li>
-		   	   			<li class="review1_desc"><h3><a href="#">哇！太好吃了，回味无穷啊!</a></h3><p>2016年12月16日</p></li>
+		   	   			<li class="review1_desc"><h3><a href="#">哇！太好吃了，回味无穷啊!</a></h3><p>2018年04月14日</p></li>
 		   	   			<div class="clearfix"> </div>
 		   	   		</ul>
 		   	   	</li>
 		   	   	<li>
 		   	   		<ul class="review1">
 		   	   			<li class="review1_img"><img src="images/pic3.jpg" class="img-responsive" alt=""/></li>
-		   	   			<li class="review1_desc"><h3><a href="#">这是我吃过的最好吃的东西！</a></h3><p>2016年12月20日</p></li>
+		   	   			<li class="review1_desc"><h3><a href="#">这是我吃过的最好吃的东西！</a></h3><p>2018年04月13日</p></li>
 		   	   			<div class="clearfix"> </div>
 		   	   		</ul>
 		   	   	</li>

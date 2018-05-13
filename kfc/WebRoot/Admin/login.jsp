@@ -26,7 +26,8 @@
 <body>
 
 	<div class="page-container">
-		<a href="Admin/login.jsp"><img src="assets/img/logo1.png">
+	
+		<a href="login.jsp"><img src="assets/img/logo1.png">
 		</a>
 		<form action="loginadm.action" method="post">
 

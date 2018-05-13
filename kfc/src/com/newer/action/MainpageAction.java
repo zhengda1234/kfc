@@ -1,6 +1,7 @@
 package com.newer.action;
 import java.util.Map;
 
+import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
 import org.apache.struts2.convention.annotation.ExceptionMappings;
 import org.apache.struts2.convention.annotation.Result;
@@ -61,8 +62,8 @@ public void setUser(User user) {
 		}
 	}*/
 	
-	
-	/*@Action("delete")
+	/*
+	@Action("delete")
 	public String delete() throws Exception {
 		System.out.println("delete()");
 		boolean flag=dao.delete();

@@ -22,20 +22,21 @@ import com.newer.service.inter.back.AdRoleService;
 import com.newer.service.inter.back.AdUserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-@Namespace(value="/Admin")
-@Action(value="backAdmin")
+
+@Namespace(value = "/Admin")
+@Action(value = "backAdmin")
 @Results({
 
-	@Result(name = "admin", location = "/Admin/Admin.jsp"),
-	@Result(name="addUser",location="/Admin/addAdmin.jsp"),
-	@Result(name="modifyUser",location="/Admin/modifyAdmin.jsp"),
-	@Result(name="deleteUser",location = "backAdmin.action",type="redirectAction" ),
-	@Result(name = "failed", location = "/Admin/setMyself.jsp"),
-	@Result(name = "success", location = "/Admin/index.jsp"),
-	@Result(name = "addSuccess", location = "backAdmin.action",type="redirectAction" ),
-	@Result(name = "modifySuccess", location = "backAdmin.action",type="redirectAction" ),
-	@Result(name = "error", location = "/index.jsp") })
-public class AduserAction extends ActionSupport implements RequestAware,SessionAware{	
+		@Result(name = "admin", location = "/Admin/Admin.jsp"),
+		@Result(name = "addUser", location = "/Admin/addAdmin.jsp"),
+		@Result(name = "modifyUser", location = "/Admin/modifyAdmin.jsp"),
+		@Result(name = "deleteUser", location = "backAdmin.action", type = "redirectAction"),
+		@Result(name = "failed", location = "/Admin/setMyself.jsp"),
+		@Result(name = "success", location = "/Admin/index.jsp"),
+		@Result(name = "addSuccess", location = "backAdmin.action", type = "redirectAction"),
+		@Result(name = "modifySuccess", location = "backAdmin.action", type = "redirectAction"),
+		@Result(name = "error", location = "/index.jsp") })
+public class AduserAction extends ActionSupport implements RequestAware, SessionAware {
 	private AdUserService userService;
 	private AdRoleService roleService;
 	private User user;
@@ -48,7 +49,6 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 	private Map<String, Object> request;
 	private Map<String, Object> session;
 	AdUserServiceImpl adUserServiceImpl = new AdUserServiceImpl();
-	
 
 	/*
 	 * 修改管理员的个人信息
@@ -56,16 +56,16 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 	 */
 	@Action("myself")
 	public String update_myself() {
-		//获取确认密码的值
+		// 获取确认密码的值
 		String againPass = ServletActionContext.getRequest().getParameter("againPass");
 		String result = adUserServiceImpl.update_myself(user, againPass);
 		return result;
 
 	}
 
-	public String execute() throws Exception{
+	public String execute() throws Exception {
 		userService = new AdUserServiceImpl();
-		
+
 		List<User> senders = userService.selectAllByRoleId(3);
 		List<User> sales = userService.selectAllByRoleId(4);
 		List<User> admins = userService.selectAllByRoleId(2);
@@ -76,24 +76,26 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 		request.put("sales", sales);
 		return "admin";
 	}
-	public String modifySuccess() throws Exception{
-		userService=new AdUserServiceImpl();
-		roleService =new AdRoleServiceImpl();
-		user=getUser();
-		role=user.getRole();
-		role=roleService.selectById(role.getRoleId());
+
+	public String modifySuccess() throws Exception {
+		userService = new AdUserServiceImpl();
+		roleService = new AdRoleServiceImpl();
+		user = getUser();
+		role = user.getRole();
+		role = roleService.selectById(role.getRoleId());
 		user.setRole(role);
-		System.out.println("modifys==========="+user.getRole().getRoleName());
-		if(userService.modify(user)){
+		System.out.println("modifys===========" + user.getRole().getRoleName());
+		if (userService.modify(user)) {
 			return "modifySuccess";
-		}else{
+		} else {
 			return "error";
 		}
 	}
-	public String addUser() throws Exception {
-		roleService =new AdRoleServiceImpl();
 
-		List<Role> roles=roleService.selectAll();
+	public String addUser() throws Exception {
+		roleService = new AdRoleServiceImpl();
+
+		List<Role> roles = roleService.selectAll();
 		request.put("roles", roles);
 
 		return "addUser";
@@ -101,12 +103,12 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 
 	public String addSuccess() throws Exception {
 		userService = new AdUserServiceImpl();
-		roleService =new AdRoleServiceImpl();
-		user=getUser();
-		role=user.getRole();
-		role=roleService.selectById(role.getRoleId());
+		roleService = new AdRoleServiceImpl();
+		user = getUser();
+		role = user.getRole();
+		role = roleService.selectById(role.getRoleId());
 		user.setRole(role);
-		System.out.println("==========="+user.getRole().getRoleName());
+		System.out.println("===========" + user.getRole().getRoleName());
 		if (userService.add(user)) {
 			return "addSuccess";
 		} else {
@@ -117,13 +119,12 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 	public String modifyUser() throws Exception {
 		userService = new AdUserServiceImpl();
 		user = userService.selectById(user.getId());
-		roleService =new AdRoleServiceImpl();
-		role=roleService.selectById(2);
+		roleService = new AdRoleServiceImpl();
+		role = roleService.selectById(2);
 		user.setRole(role);
-		System.out.println(user+"+++++++++++"+user.getRole());
+		System.out.println(user + "+++++++++++" + user.getRole());
 		return "modifyUser";
 	}
-
 
 	public String deleteUser() throws Exception {
 		userService = new AdUserServiceImpl();
@@ -135,51 +136,67 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 			return "error";
 		}
 	}
+
 	public AdUserService getUserService() {
 		return userService;
 	}
+
 	public void setUserService(AdUserService userService) {
 		this.userService = userService;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public AdRoleService getRoleService() {
 		return roleService;
 	}
+
 	public void setRoleService(AdRoleService roleService) {
 		this.roleService = roleService;
 	}
+
 	public Role getRole() {
 		return role;
 	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
 	public List<User> getUsers() {
 		return users;
 	}
+
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
 	public Map<String, Object> getRequest() {
 		return request;
 	}
+
 	public void setRequest(Map<String, Object> request) {
 		this.request = request;
 	}
+
 	public Map<String, Object> getSession() {
 		return session;
 	}
+
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
 	public AdUserServiceImpl getAdUserServiceImpl() {
 		return adUserServiceImpl;
 	}
+
 	public void setAdUserServiceImpl(AdUserServiceImpl adUserServiceImpl) {
 		this.adUserServiceImpl = adUserServiceImpl;
 	}
@@ -215,7 +232,5 @@ public class AduserAction extends ActionSupport implements RequestAware,SessionA
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
-	
 
 }
