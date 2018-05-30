@@ -39,7 +39,7 @@ import com.opensymphony.xwork2.ActionSupport;
 		@Result(name = "success10", location = "/afterlogin/update1.jsp"),
 		@Result(name = "success11", location = "/afterlogin/updatesuccess.jsp"),
 		@Result(name = "success12", location = "/afterlogin/personfail.jsp"),
-		@Result(name = "failed", location = "/index.jsp"), @Result(name = "error", location = "/error.jsp") })
+		@Result(name = "failed", location = "/index.jsp"), @Result(name = "error", location = "/erro.jsp") })
 @ExceptionMappings({ @ExceptionMapping(exception = "java.lang.Exception", result = "error") })
 public class SearchAction extends ActionSupport implements RequestAware, SessionAware, ApplicationAware {
 	private Map<String, Object> application;
@@ -199,11 +199,14 @@ public class SearchAction extends ActionSupport implements RequestAware, Session
 				session.remove("cart");
 				session.remove("price");
 				session.remove("orders");
+				System.out.println("66666666");
 				return "success6";
 			} else {
+				System.out.println("44444444444");
 				return "success4";
 			}
 		} else {
+			System.out.println("5555555555");
 			return "success5";
 		}
 	}
@@ -239,13 +242,14 @@ public class SearchAction extends ActionSupport implements RequestAware, Session
 	@Action("person")
 	public String person() throws Exception {
 		// 不能打印空值的对象
-		System.out.println("aaaaaa7paypaypaya");
 		if (session.get("user") != null) {
 			User user1 = (User) session.get("user");
 			User user2 = dao2.findById(user1.getId());
 			session.put("userorders", user2.getOrders());
+			System.out.println("success9-----------");
 			return "success9";
 		} else {
+			System.out.println("success12------------");
 			return "success12";
 		}
 	}

@@ -19,14 +19,13 @@ import com.opensymphony.xwork2.ActionSupport;
 @Namespace(value = "/Admin")
 @Action(value = "backMeal")
 @Results({ @Result(name = "Goods", location = "/Admin/Goods.jsp"),
-		@Result(name = "addSuccess", location = "backMeal.action",type="redirectAction" ),
+		@Result(name = "addSuccess", location = "backMeal.action", type = "redirectAction"),
 		@Result(name = "addMeal", location = "/Admin/addGoods.jsp"),
 		@Result(name = "modifyMeal", location = "/Admin/modifyGoods.jsp"),
-		@Result(name = "modifySuccess",location = "backMeal.action",type="redirectAction"),
-		@Result(name = "deleteMeal", location = "backMeal.action",type="redirectAction"),
+		@Result(name = "modifySuccess", location = "backMeal.action", type = "redirectAction"),
+		@Result(name = "deleteMeal", location = "backMeal.action", type = "redirectAction"),
 		@Result(name = "error", location = "/Admin/index.jsp") })
-public class MealAction extends ActionSupport implements RequestAware,
-		SessionAware {
+public class MealAction extends ActionSupport implements RequestAware, SessionAware {
 
 	private AdMealService mealService;
 	private Meal meal;
@@ -58,7 +57,7 @@ public class MealAction extends ActionSupport implements RequestAware,
 
 	public String addSuccess() throws Exception {
 		mealService = new AdMealServiceImpl();
-		System.out.println("addbefore======"+meal);
+		System.out.println("addbefore======" + meal);
 		if (mealService.add(meal)) {
 			System.out.println(meal);
 			return "addSuccess";
@@ -69,27 +68,29 @@ public class MealAction extends ActionSupport implements RequestAware,
 
 	public String deleteMeal() throws Exception {
 		mealService = new AdMealServiceImpl();
-		meal=mealService.selectById(meal.getId());
-		System.out.println("deletebefore======"+meal);
-		if (mealService.delete(meal)){
-			System.out.println("delete======"+meal);
+		meal = mealService.selectById(meal.getId());
+		System.out.println("deletebefore======" + meal);
+		if (mealService.delete(meal)) {
+			System.out.println("delete======" + meal);
 			return "deleteMeal";
 		} else {
 			return "error";
 		}
 	}
-	
-	public String modifyMeal() throws Exception{
-		mealService=new AdMealServiceImpl();
-		meal=mealService.selectById(meal.getId());
+
+	public String modifyMeal() throws Exception {
+		mealService = new AdMealServiceImpl();
+		meal = mealService.selectById(meal.getId());
 		return "modifyMeal";
 	}
+
 	public String modifySuccess() throws Exception {
 		mealService = new AdMealServiceImpl();
-		meal=getMeal();
-		System.out.println("modify================"+meal);
-		if(mealService.modify(meal)){
-		return "modifySuccess";}else{
+		meal = getMeal();
+		System.out.println("modify================" + meal);
+		if (mealService.modify(meal)) {
+			return "modifySuccess";
+		} else {
 			return "error";
 		}
 	}

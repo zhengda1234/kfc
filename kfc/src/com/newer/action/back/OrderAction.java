@@ -22,11 +22,11 @@ import com.opensymphony.xwork2.ActionSupport;
 @Namespace(value = "/Admin")
 @Action(value = "backOrder")
 @Results({ @Result(name = "Order", location = "/Admin/order.jsp"),
-		@Result(name = "sendOrder",location = "backOrder.action",type="redirectAction" ),
+		@Result(name = "sendOrder", location = "backOrder.action", type = "redirectAction"),
 		@Result(name = "addOrder", location = "/Admin/addOrder.jsp"),
-		@Result(name = "addSuccess", location = "backOrder.action",type="redirectAction" ),
+		@Result(name = "addSuccess", location = "backOrder.action", type = "redirectAction"),
 		@Result(name = "modifyOrder", location = "/Admin/modifyOrder.jsp"),
-		@Result(name = "modifySuccess", location = "backOrder.action",type="redirectAction" ),
+		@Result(name = "modifySuccess", location = "backOrder.action", type = "redirectAction"),
 		@Result(name = "deleteOrder", location = "/Admin/index.jsp"),
 		@Result(name = "error", location = "/Admin/index.jsp") })
 public class OrderAction extends ActionSupport implements RequestAware {
@@ -96,10 +96,10 @@ public class OrderAction extends ActionSupport implements RequestAware {
 	public String sendOrder() throws Exception {
 		orderService = new AdOrderServiceImpl();
 		order = getOrder();
-		
-		orders=orderService.SendOrderById(order.getId());
+
+		orders = orderService.SendOrderById(order.getId());
 		request.remove("orders");
-		request.put("orders",orders);
+		request.put("orders", orders);
 		return "sendOrder";
 	}
 

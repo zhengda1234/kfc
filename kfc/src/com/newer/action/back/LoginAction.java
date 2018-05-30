@@ -1,4 +1,5 @@
 package com.newer.action.back;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -15,21 +16,22 @@ public class LoginAction extends ActionSupport {
 	private User user;
 	UserDAOimpl userDaoimpl = new UserDAOimpl();
 	AdLoginServicelmpl adLoginServicelmpl = new AdLoginServicelmpl();
-	
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 	@Action("loginadm")
-	//管理员登录
+	// 管理员登录
 	public String login() {
 		User user1 = userDaoimpl.selectByName(user);
 		System.out.println(user1);
 		String result = adLoginServicelmpl.login(user1);
-		return result;		
+		return result;
 	}
 
 	@Override
