@@ -57,7 +57,7 @@
 </script>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Register</title>
+    <title>购物车</title>
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -250,4 +250,10 @@
     <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
 </div>
 </body>
+
+<script type="text/javascript">
+    $(function () {
+
+    })
+</script>
 </html>

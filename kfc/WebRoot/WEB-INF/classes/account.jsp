@@ -248,7 +248,8 @@
                                         </c:when>
                                         <c:otherwise>
                                             <li class="login_top"><i class="sign"> </i><span
-                                                    style=" color:#00FF00;font-size:12px ;font-family:宋体;">未登录</span></li>
+                                                    style=" color:#00FF00;font-size:12px ;font-family:宋体;">未登录</span>
+                                            </li>
                                         </c:otherwise>
                                     </c:choose>
                                 </ul>
@@ -372,21 +373,20 @@
                                          onclick="this.src='validate.jpg?temp='+(new Date().getTime().toString(36));"
                                          style="width: 136px;height: 41px;"/>
                                 </div>
+                                <br/>
+                                <div>
+                                    <div><a class="forgot" href="#">忘记密码</a></div>
+                                    <div><input type="submit" value="登录"></div>
+                                </div>
                             </form>
                         </div>
-                        <br/>
-                        <div>
-                            <div><a class="forgot" href="#">忘记密码</a></div>
-                            <div><input type="submit" value="登录"></div>
-                        </div>
+
                     </div>
-                    </form>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <jsp:include page="./common/footer.jsp"/>

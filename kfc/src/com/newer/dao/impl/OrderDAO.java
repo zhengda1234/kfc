@@ -14,77 +14,78 @@ import com.newer.dao.inter.BaseHibernateDAO;
 import com.newer.pojo.Order;
 
 /**
- 	
-  * @author 
+ * @author
  */
-public class OrderDAO extends BaseHibernateDAO  {
-	     private static final Logger log = LoggerFactory.getLogger(OrderDAO.class);
-		//property constants
-	public static final String ORDER_ADDRESS = "orderAddress";
-	public static final String BILL = "bill";
-	public static final String ORDER_TOTAL = "orderTotal";
-	public static final String ORDER_PAY_TYPE = "orderPayType";
+public class OrderDAO extends BaseHibernateDAO {
+    private static final Logger log = LoggerFactory.getLogger(OrderDAO.class);
+    //property constants
+    public static final String ORDER_ADDRESS = "orderAddress";
+    public static final String BILL = "bill";
+    public static final String ORDER_TOTAL = "orderTotal";
+    public static final String ORDER_PAY_TYPE = "orderPayType";
 
 
-
-//    保存操作
+    //    保存操作
     public boolean save(Order transientInstance) throws Exception {
         boolean flag = false;
-		Transaction tran = null;
-		//getSession().clear();
+        Transaction tran = null;
+        //getSession().clear();
         try {
-        	tran = getSession().beginTransaction();
-        	//System.out.println("id=" + transientInstance.getId());
-        	//getSession().delete(transientInstance);
-        	//getSession().merge(transientInstance.getUser());
-        	//getSession().merge(transientInstance);
-        	getSession().evict(transientInstance);
-        	getSession().clear();
-        	 getSession().save(transientInstance);
-             tran.commit();
-             flag = true;
+            tran = getSession().beginTransaction();
+            //System.out.println("id=" + transientInstance.getId());
+            //getSession().delete(transientInstance);
+            //getSession().merge(transientInstance.getUser());
+            //getSession().merge(transientInstance);
+            getSession().evict(transientInstance);
+            getSession().clear();
+            System.out.println(transientInstance);
+            getSession().merge(transientInstance);
+            tran.commit();
+            flag = true;
         } catch (Exception re) {
-        	re.printStackTrace();
+            re.printStackTrace();
             tran.rollback();
             throw re;
         }
         System.out.println(flag);
-    	return flag;
+        return flag;
     }
-    
-//  更新操作
-  public boolean update(Order order) {
-		boolean flag = false;
-		Transaction tran = null;
-		try {
-			tran = getSession().beginTransaction();
-          getSession().update(order);
-			tran.commit();
-			flag = true;
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			tran.rollback();
-		} 
-		
-		return flag;
-	}
-//    删除操作
-	public boolean delete(Order persistentInstance) {
+
+    //  更新操作
+    public boolean update(Order order) {
         boolean flag = false;
-		Transaction tran = null;
+        Transaction tran = null;
         try {
-        	tran = getSession().beginTransaction();
+            tran = getSession().beginTransaction();
+            getSession().update(order);
+            tran.commit();
+            flag = true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            tran.rollback();
+        }
+
+        return flag;
+    }
+
+    //    删除操作
+    public boolean delete(Order persistentInstance) {
+        boolean flag = false;
+        Transaction tran = null;
+        try {
+            tran = getSession().beginTransaction();
             getSession().delete(persistentInstance);
             tran.commit();
-			flag = true;
+            flag = true;
         } catch (RuntimeException re) {
             tran.rollback();
             throw re;
         }
-    	return flag;
+        return flag;
     }
-//    根据id查询
-    public Order findById( int id) {
+
+    //    根据id查询
+    public Order findById(int id) {
         try {
             Order instance = (Order) getSession()
                     .get(Order.class, id);
@@ -93,77 +94,82 @@ public class OrderDAO extends BaseHibernateDAO  {
             throw re;
         }
     }
-    
-//    根据实例查询
+
+    //    根据实例查询
     public List findByExample(Order instance) {
-    	
+
         try {
             List results = getSession()
                     .createCriteria("com.newer.pojo.Order")
                     .add(Example.create(instance))
-            .list();
+                    .list();
             return results;
         } catch (RuntimeException re) {
-        	re.printStackTrace();
+            re.printStackTrace();
             throw re;
         }
 
-    }    
-//    根据属性查询
+    }
+
+    //    根据属性查询
     public List findByProperty(String propertyName, Object value) {
-      try {
-         String queryString = "from Order as model where model." 
-         						+ propertyName + "= ?";
-         Query queryObject = getSession().createQuery(queryString);
-		 queryObject.setParameter(0, value);
-		 return queryObject.list();
-      } catch (RuntimeException re) {
-         throw re;
-      }
-	}
-//根据地址
-	public List findByOrderAddress(Object orderAddress
-	) {
-		return findByProperty(ORDER_ADDRESS, orderAddress
-		);
-	}
-//	根据账单
-	public List findByBill(Object bill
-	) {
-		return findByProperty(BILL, bill
-		);
-	}
-//	根据支付总额
-	public List findByOrderTotal(Object orderTotal
-	) {
-		return findByProperty(ORDER_TOTAL, orderTotal
-		);
-	}
-//	根据支付类型
-	public List findByOrderPayType(Object orderPayType
-	) {
-		return findByProperty(ORDER_PAY_TYPE, orderPayType
-		);
-	}
-	
-//查询所有订单
-	public List findAll() {
-		try {
-			String queryString = "from Order";
-	         Query queryObject = getSession().createQuery(queryString);
-			 return queryObject.list();
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-//	根据客户姓名模糊查询(%用户名%)，显示客户姓名以及订单名称，返回数组类型
-	public List<Order> findByCondition(Order order) {
-		String hql = "select o from Order as o inner join o.user where o.user.userName like :name";
-		Query query = getSession().createQuery(hql);
-		query.setString("name", "%"+order.getUser().getUserName()+"%");
-		return query.list();
-	}
-	
-   
-    
+        try {
+            String queryString = "from Order as model where model."
+                    + propertyName + "= ?";
+            Query queryObject = getSession().createQuery(queryString);
+            queryObject.setParameter(0, value);
+            return queryObject.list();
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    //根据地址
+    public List findByOrderAddress(Object orderAddress
+    ) {
+        return findByProperty(ORDER_ADDRESS, orderAddress
+        );
+    }
+
+    //	根据账单
+    public List findByBill(Object bill
+    ) {
+        return findByProperty(BILL, bill
+        );
+    }
+
+    //	根据支付总额
+    public List findByOrderTotal(Object orderTotal
+    ) {
+        return findByProperty(ORDER_TOTAL, orderTotal
+        );
+    }
+
+    //	根据支付类型
+    public List findByOrderPayType(Object orderPayType
+    ) {
+        return findByProperty(ORDER_PAY_TYPE, orderPayType
+        );
+    }
+
+    //查询所有订单
+    public List findAll() {
+        try {
+            String queryString = "from Order";
+            Query queryObject = getSession().createQuery(queryString);
+            return queryObject.list();
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    //	根据客户姓名模糊查询(%用户名%)，显示客户姓名以及订单名称，返回数组类型
+    public List<Order> findByCondition(Order order) {
+        String hql = "select o from Order as o inner join o.user where o.user.userName like :name";
+        Query query = getSession().createQuery(hql);
+        query.setString("name", "%" + order.getUser().getUserName() + "%");
+        return query.list();
+    }
+
+
 }

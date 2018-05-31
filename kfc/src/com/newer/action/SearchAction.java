@@ -2,11 +2,7 @@
 package com.newer.action;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
@@ -231,14 +227,21 @@ public class SearchAction extends ActionSupport implements RequestAware, Session
         Set<Meal> results = new HashSet<Meal>();
         results = (Set<Meal>) session.get("orders");
         Meal m = dao.findById(meal.getId());
-        results.remove(m);
         session.remove("orders");
         int cart = (Integer) session.get("cart") - 1;
         session.remove("cart");
         session.put("cart", cart);
-        int price = (Integer) session.get("price") - Integer.parseInt(meal.getMealPrice());
+        System.out.println(session.get("price"));
+        System.out.println(m.getMealPrice());
+        int price = (Integer) session.get("price") - Integer.parseInt(m.getMealPrice());
         session.remove("price");
         session.put("price", price);
+        Iterator<Meal> iterator = results.iterator();
+        while (iterator.hasNext()){
+            if (iterator.next().toString().equals(m.toString())){
+                iterator.remove();
+            }
+        }
         session.put("orders", results);
         return "success4";
     }
