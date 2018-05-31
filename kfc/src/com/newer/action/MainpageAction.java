@@ -60,25 +60,24 @@ public class MainpageAction extends ActionSupport implements RequestAware, Sessi
 
 	/*
 	 * @Action("updateStudent") public String update() throws Exception {
-	 * System.out.println("update()");
-	 * 
-	 * boolean flag =dao.update(student); System.out.println(flag);
+	 *
+	 * boolean flag =dao.update(student);
 	 * 
 	 * if (flag) { return "success"; } else { return "error"; } }
 	 */
 
 	/*
 	 * @Action("delete") public String delete() throws Exception {
-	 * System.out.println("delete()"); boolean flag=dao.delete(); if (flag) { return
+	 * boolean flag=dao.delete(); if (flag) { return
 	 * "success"; } else { return "toselect"; } }
 	 */
 
 	
 	 /* @Action("select") public String select() throws Exception {
-	  System.out.println("select()"); String message = "这个是局部变量的值";
+		 String message = "这个是局部变量的值";
 	  request.put("message",message);
 	  
-	  List<Order> result = dao.findAll(); System.out.println(result);
+	  List<Order> result = dao.findAll();
 	  session.put("userList", result);
 	  
 	  return "select"; }
@@ -86,19 +85,16 @@ public class MainpageAction extends ActionSupport implements RequestAware, Sessi
 
 	@Override
 	public void setApplication(Map<String, Object> application) {
-		System.out.println("---------------------setApplication(Map<String, Object> application)");
 		this.application = application;
 	}
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-		System.out.println("----------------------setSession(Map<String, Object> session)");
 		this.session = session;
 	}
 
 	@Override
 	public void setRequest(Map<String, Object> request) {
-		System.out.println("--------------------setRequest(Map<String, Object> request)");
 		this.request = request;
 	}
 }

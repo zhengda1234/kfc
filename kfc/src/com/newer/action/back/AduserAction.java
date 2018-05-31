@@ -70,7 +70,6 @@ public class AduserAction extends ActionSupport implements RequestAware, Session
 		List<User> sales = userService.selectAllByRoleId(4);
 		List<User> admins = userService.selectAllByRoleId(2);
 
-		System.out.println(users);
 		request.put("admins", admins);
 		request.put("senders", senders);
 		request.put("sales", sales);
@@ -84,7 +83,6 @@ public class AduserAction extends ActionSupport implements RequestAware, Session
 		role = user.getRole();
 		role = roleService.selectById(role.getRoleId());
 		user.setRole(role);
-		System.out.println("modifys===========" + user.getRole().getRoleName());
 		if (userService.modify(user)) {
 			return "modifySuccess";
 		} else {
@@ -108,7 +106,6 @@ public class AduserAction extends ActionSupport implements RequestAware, Session
 		role = user.getRole();
 		role = roleService.selectById(role.getRoleId());
 		user.setRole(role);
-		System.out.println("===========" + user.getRole().getRoleName());
 		if (userService.add(user)) {
 			return "addSuccess";
 		} else {
@@ -122,14 +119,12 @@ public class AduserAction extends ActionSupport implements RequestAware, Session
 		roleService = new AdRoleServiceImpl();
 		role = roleService.selectById(2);
 		user.setRole(role);
-		System.out.println(user + "+++++++++++" + user.getRole());
 		return "modifyUser";
 	}
 
 	public String deleteUser() throws Exception {
 		userService = new AdUserServiceImpl();
 		user = userService.selectById(user.getId());
-		System.out.println("delete++++" + user);
 		if (userService.delete(user)) {
 			return "deleteUser";
 		} else {

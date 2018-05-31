@@ -37,7 +37,6 @@ public class MealAction extends ActionSupport implements RequestAware, SessionAw
 	private List<Meal> dinner;
 
 	public String execute() throws Exception {
-		System.out.println("Mealsasasa");
 		mealService = new AdMealServiceImpl();
 		List<Meal> meals = mealService.selectAll();
 		List<Meal> breakfast = mealService.selectBytype("早餐");
@@ -47,7 +46,6 @@ public class MealAction extends ActionSupport implements RequestAware, SessionAw
 		request.put("breakfast", breakfast);
 		request.put("lunch", lunch);
 		request.put("dinner", dinner);
-		System.out.println(meals);
 		return "Goods";
 	}
 
@@ -57,9 +55,7 @@ public class MealAction extends ActionSupport implements RequestAware, SessionAw
 
 	public String addSuccess() throws Exception {
 		mealService = new AdMealServiceImpl();
-		System.out.println("addbefore======" + meal);
 		if (mealService.add(meal)) {
-			System.out.println(meal);
 			return "addSuccess";
 		} else {
 			return "error";
@@ -69,9 +65,7 @@ public class MealAction extends ActionSupport implements RequestAware, SessionAw
 	public String deleteMeal() throws Exception {
 		mealService = new AdMealServiceImpl();
 		meal = mealService.selectById(meal.getId());
-		System.out.println("deletebefore======" + meal);
 		if (mealService.delete(meal)) {
-			System.out.println("delete======" + meal);
 			return "deleteMeal";
 		} else {
 			return "error";
@@ -87,7 +81,6 @@ public class MealAction extends ActionSupport implements RequestAware, SessionAw
 	public String modifySuccess() throws Exception {
 		mealService = new AdMealServiceImpl();
 		meal = getMeal();
-		System.out.println("modify================" + meal);
 		if (mealService.modify(meal)) {
 			return "modifySuccess";
 		} else {

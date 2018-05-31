@@ -44,7 +44,6 @@ public class OrderAction extends ActionSupport implements RequestAware {
 		orderService = new AdOrderServiceImpl();
 		List<Order> orders = orderService.selectAll();
 
-		System.out.println(orders);
 		request.put("orders", orders);
 		return "Order";
 	}
@@ -52,15 +51,12 @@ public class OrderAction extends ActionSupport implements RequestAware {
 	public String modifyOrder() throws Exception {
 		orderService = new AdOrderServiceImpl();
 		order = orderService.selectById(order.getId());
-		System.out.println("modifyOrder+++++" + order);
 		return "modifyOrder";
 	}
 
 	public String modifySuccess() throws Exception {
 		orderService = new AdOrderServiceImpl();
 		order = getOrder();
-		System.out.println("modifyOrder============" + order);
-		System.out.println(order.getBoolean());
 		if (orderService.modify(order)) {
 			return "modifySuccess";
 		} else {
@@ -82,9 +78,7 @@ public class OrderAction extends ActionSupport implements RequestAware {
 		orderService = new AdOrderServiceImpl();
 		userService = new AdUserServiceImpl();
 		user = getUser();
-		System.out.println(user);
 		user.getRole().setRoleId(1);
-		System.out.println(user.getRole());
 		userService.add(user);
 		if (orderService.add(order)) {
 			return "addSuccess";

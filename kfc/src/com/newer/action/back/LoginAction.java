@@ -29,14 +29,12 @@ public class LoginAction extends ActionSupport {
 	// 管理员登录
 	public String login() {
 		User user1 = userDaoimpl.selectByName(user);
-		System.out.println(user1);
 		String result = adLoginServicelmpl.login(user1);
 		return result;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("执行了execute()");
 		return super.execute();
 	}
 
