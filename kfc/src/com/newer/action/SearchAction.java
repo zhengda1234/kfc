@@ -4,6 +4,8 @@ package com.newer.action;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.opensymphony.xwork2.ActionContext;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
 import org.apache.struts2.convention.annotation.ExceptionMappings;
@@ -21,6 +23,8 @@ import com.newer.pojo.Order;
 import com.newer.pojo.Role;
 import com.newer.pojo.User;
 import com.opensymphony.xwork2.ActionSupport;
+
+import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 @Results({@Result(name = "success", location = "/panini.jsp"),
@@ -100,6 +104,9 @@ public class SearchAction extends ActionSupport implements RequestAware, Session
         } else {
             flag = dao2.save(user);
             if (flag) {
+                User user2 =dao2.findById(user.getId());
+                HttpSession session = ServletActionContext.getRequest().getSession();
+                session.setAttribute("user", user2);
                 return "success1";
             } else {
                 return "success2";
